@@ -1,0 +1,122 @@
+12:12:41] pengxiao:~ $ sudo apt-get install libssl-dev
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+  libssl-doc libssl1.1
+The following NEW packages will be installed:
+  libssl-dev libssl-doc
+The following packages will be upgraded:
+  libssl1.1
+1 upgraded, 2 newly installed, 0 to remove and 174 not upgraded.
+Need to get 3759 kB of archives.
+After this operation, 11.5 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl1.1 amd64 1.1.0g-2ubuntu4.3 [1130 kB]
+Get:2 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl-dev amd64 1.1.0g-2ubuntu4.3 [1374 kB]
+Get:3 http://archive.ubuntu.com/ubuntu bionic-updates/main amd64 libssl-doc all 1.1.0g-2ubuntu4.3 [1255 kB]
+Fetched 3759 kB in 1s (3831 kB/s)
+Preconfiguring packages ...
+(Reading database ... 30130 files and directories currently installed.)
+Preparing to unpack .../libssl1.1_1.1.0g-2ubuntu4.3_amd64.deb ...
+Unpacking libssl1.1:amd64 (1.1.0g-2ubuntu4.3) over (1.1.0g-2ubuntu4.1) ...
+Selecting previously unselected package libssl-dev:amd64.
+Preparing to unpack .../libssl-dev_1.1.0g-2ubuntu4.3_amd64.deb ...
+Unpacking libssl-dev:amd64 (1.1.0g-2ubuntu4.3) ...
+Selecting previously unselected package libssl-doc.
+Preparing to unpack .../libssl-doc_1.1.0g-2ubuntu4.3_all.deb ...
+Unpacking libssl-doc (1.1.0g-2ubuntu4.3) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+Setting up libssl1.1:amd64 (1.1.0g-2ubuntu4.3) ...
+Processing triggers for man-db (2.8.3-2) ...
+Setting up libssl-doc (1.1.0g-2ubuntu4.3) ...
+Setting up libssl-dev:amd64 (1.1.0g-2ubuntu4.3) ...
+Processing triggers for libc-bin (2.27-3ubuntu1) ...
+[12:13:07] pengxiao:~ $
+[12:14:02] pengxiao:~ $ wget https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
+Will not apply HSTS. The HSTS database must be a regular and non-world-writable file.
+ERROR: could not open HSTS store at '/home/pengxiao/.wget-hsts'. HSTS will be disabled.
+--2019-05-08 12:15:06--  https://www.python.org/ftp/python/3.7.3/Python-3.7.3.tar.xz
+Resolving www.python.org (www.python.org)... 151.101.36.223, 2a04:4e42:9::223
+Connecting to www.python.org (www.python.org)|151.101.36.223|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 17108364 (16M) [application/octet-stream]
+Saving to: ‘Python-3.7.3.tar.xz’
+
+Python-3.7.3.tar.xz           100%[=================================================>]  16.32M  11.2MB/s    in 1.5s
+
+2019-05-08 12:15:11 (11.2 MB/s) - ‘Python-3.7.3.tar.xz’ saved [17108364/17108364]
+
+[12:16:15] pengxiao:~ $ tar xvf Python-3.7.3.tar.xz
+
+
+[12:16:17] pengxiao:~ $ sudo apt install build-essential python3-dev libffi-dev zlib1g-dev
+
+[12:21:01] pengxiao:~ $ cd Python-3.7.3
+[12:21:05] pengxiao:Python-3.7.3 $ ./configure
+........
+
+checking for X509_VERIFY_PARAM_set1_host in libssl... yes
+checking for --with-ssl-default-suites... python
+configure: creating ./config.status
+config.status: creating Makefile.pre
+config.status: creating Misc/python.pc
+config.status: creating Misc/python-config.sh
+config.status: creating Modules/ld_so_aix
+config.status: creating pyconfig.h
+config.status: pyconfig.h is unchanged
+creating Modules/Setup
+creating Modules/Setup.local
+creating Makefile
+
+
+If you want a release build with all stable optimizations active (PGO, etc),
+please run ./configure --enable-optimizations
+
+
+[12:30:58] pengxiao:Python-3.7.3 $ make
+
+.....
+Python build finished successfully!
+The necessary bits to build these optional modules were not found:
+_bz2                  _curses               _curses_panel
+_dbm                  _gdbm                 _lzma
+_sqlite3              _tkinter              _uuid
+readline              zlib
+To find the necessary bits, look in setup.py in detect_modules() for the module's name.
+
+
+The following modules found by detect_modules() in setup.py, have been
+built by the Makefile instead, as configured by the Setup files:
+_abc                  atexit                pwd
+time
+
+running build_scripts
+copying and adjusting /home/pengxiao/Python-3.7.3/Tools/scripts/pydoc3 -> build/scripts-3.7
+copying and adjusting /home/pengxiao/Python-3.7.3/Tools/scripts/idle3 -> build/scripts-3.7
+copying and adjusting /home/pengxiao/Python-3.7.3/Tools/scripts/2to3 -> build/scripts-3.7
+copying and adjusting /home/pengxiao/Python-3.7.3/Tools/scripts/pyvenv -> build/scripts-3.7
+changing mode of build/scripts-3.7/pydoc3 from 666 to 777
+changing mode of build/scripts-3.7/idle3 from 666 to 777
+changing mode of build/scripts-3.7/2to3 from 666 to 777
+changing mode of build/scripts-3.7/pyvenv from 666 to 777
+renaming build/scripts-3.7/pydoc3 to build/scripts-3.7/pydoc3.7
+renaming build/scripts-3.7/idle3 to build/scripts-3.7/idle3.7
+renaming build/scripts-3.7/2to3 to build/scripts-3.7/2to3-3.7
+renaming build/scripts-3.7/pyvenv to build/scripts-3.7/pyvenv-3.7
+[12:36:10] pengxiao:Python-3.7.3 $ sudo make install
+
+
+
+[14:16:15] pengxiao:demo $ python3.7
+Python 3.7.3 (default, May  8 2019, 12:35:03)
+[GCC 7.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+[14:16:19] pengxiao:demo $
+[14:16:19] pengxiao:demo $
+[14:16:19] pengxiao:demo $ mkdir demo
+[14:16:20] pengxiao:demo $ cd demo
+[14:16:20] pengxiao:demo $ python3.7 -m venv .env
+[14:16:33] pengxiao:demo $ source .env/bin/activate
+(.env) [14:16:40] pengxiao:demo $ pip3 install flask
